@@ -168,3 +168,36 @@ void MainWindow::on_action_X_triggered()
     on_action_C_triggered();
     qApp->quit();
 }
+
+void MainWindow::on_action_F_triggered()
+{
+    QDialog*    find_dlg = new QDialog(this);
+
+    find_dlg->setWindowTitle(tr("查找"));
+
+    find_text_line_edit = new QLineEdit(find_dlg);
+
+    QPushButton *find_btn = new QPushButton(tr("查找下一个"), find_dlg);
+
+    QVBoxLayout *layout = new QVBoxLayout(find_dlg);
+
+    layout->addWidget(find_text_line_edit);
+    layout->addWidget(find_btn);
+
+    find_dlg->show();
+
+    connect(find_btn, SIGNAL(clicked()), this, SLOT(show_find_text()));
+}
+
+void MainWindow::show_find_text()
+{
+    QString find_text = find_text_line_edit->text();
+
+    //if(!ui->textEdit->find(find_text, QTextDocument::FindBackward)) {
+    if(!ui->textEdit->find(find_text)) {
+
+        QMessageBox::warning(this, tr("查找"), tr("找不到 %1").arg(find_text));
+
+    }
+
+}

@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QLineEdit>
+
 
 namespace Ui {
 class MainWindow;
@@ -36,8 +38,13 @@ private slots:
 
     void on_action_X_triggered();
 
+    void show_find_text();
+
+    void on_action_F_triggered();
+
 private:
     Ui::MainWindow *ui;
+    QLineEdit   *find_text_line_edit;     //用于输入查找的内容
     bool is_saved;
     QString cur_file;
     void    do_file_new();
